@@ -152,7 +152,7 @@ class TestMarkdownToTextNode(unittest.TestCase):
             new_nodes,
         )
 
-    def test_split_images(self):
+    def test_split_links(self):
         node = TextNode(
             "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)",
             TextType.TEXT,
@@ -170,7 +170,7 @@ class TestMarkdownToTextNode(unittest.TestCase):
             new_nodes,
         )
     
-    def test_split_images_multi_nodes(self):
+    def test_split_links_multi_nodes(self):
         nodes = [
             TextNode(
                 "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)",
