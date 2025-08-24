@@ -1,11 +1,13 @@
 import os
 import shutil
 
-from textnode import TextNode, TextType
-from htmlnode import HTMLNode
+from copy_files import copy_files
+from gen_content import generate_page
 
 dir_path_static = "./static"
 dir_path_public = "./public"
+dir_path_content = "./content"
+template_path = "./template.html"
 
 def main():
     print("deleting public directory...")
@@ -15,17 +17,12 @@ def main():
     print("copying static files to public directory...")
     copy_files(dir_path_static, dir_path_public)
 
-def copy_files(source_dir_path, dest_dir_path):
-    if not os.path.exists(dest_dir_path):
-         os.mkdir(dest_dir_path)
+    print("generating page...")
+    generate_page(
+        os.path.join(dir_path_content, "index.md"),
+        template_path,
+        os.path.join(dir_path_public, "index.html")
+    )
 
-    for filename in os.listdir(source_dir_path):
-        from_path = os.path.join(source_dir_path, filename)
-        dest_path = os.path.join(dest_dir_path, filename)
-        print(f" * {from_path} -> {dest_path}")
-        if os.path.isfile(from_path):
-            shutil.copy(from_path, dest_path)
-        else:
-            copy_files(from_path, dest_path)
 
 main()
