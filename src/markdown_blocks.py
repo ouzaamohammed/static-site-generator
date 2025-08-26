@@ -35,9 +35,11 @@ def is_unordered_list(block):
 
 def is_ordered_list(block):
     lines = block.split("\n")
-    for i in range(len(lines)):
-        if not lines[i].startswith(f"{i+1}. "):
+    i = 1
+    for line in lines:
+        if not line.startswith(f"{i}. "):
             return False
+        i += 1
     return True
 
 def block_to_block_type(block):
