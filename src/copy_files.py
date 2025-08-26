@@ -1,8 +1,6 @@
 import os
 import shutil
 
-from markdown_blocks import markdown_to_blocks, markdown_to_html_node
-
 def copy_files(source_dir_path, dest_dir_path):
     if not os.path.exists(dest_dir_path):
          os.mkdir(dest_dir_path)
