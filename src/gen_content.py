@@ -33,3 +33,13 @@ def generate_page(from_path, template_path, dest_path):
     to_file = open(dest_path, "w")
     to_file.write(template)
 
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    print(f"Crawling {dir_path_content}...")
+    for filename in os.listdir(dir_path_content):
+        from_path = os.path.join(dir_path_content, filename)
+        dest_path = os.path.join(dest_dir_path, filename)
+        if os.path.isfile(from_path) and filename.endswith(".md"):
+            dest_path = dest_path.replace(".md", ".html")
+            generate_page(from_path, template_path, dest_path)
+        else:
+            generate_pages_recursive(from_path, template_path, dest_path)
